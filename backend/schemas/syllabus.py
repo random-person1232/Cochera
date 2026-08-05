@@ -7,4 +7,4 @@ class Syllabus(BaseModel):
     goal: str 
 
 class Topics(BaseModel):
-    topics: list
+    weeks: list

@@ -22,8 +22,8 @@ form.addEventListener("submit", async e => {
 
     const result = await response.json();
     result.forEach(text => {
-    const week = document.createElement('li');
-    week.textContent = text; 
-    topicList.appendChild(week); 
+        const week = document.createElement('li');
+        week.textContent = text; 
+        topicList.appendChild(week); 
     });
 })

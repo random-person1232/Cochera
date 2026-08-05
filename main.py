@@ -1,6 +1,7 @@
 from backend.schemas.syllabus import Syllabus
 from backend.schemas.syllabus import Topics
 from backend.weeklyOverview import weekOverview 
+from backend.studyGuide import createGuide
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import os 
@@ -8,19 +9,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 DEEPSEEK_API = os.getenv("DEEPSEEK_API")
+TAVILY_API = os.getenv("TAVILY_API")
 
 app = FastAPI()
 
 @app.post("/syllabus")
-async def createOverview(syllabus: Syllabus):
+def createOverview(syllabus: Syllabus):
 
-    weeks = weekOverview(syllabus)
+    weeks = weekOverview(syllabus, DEEPSEEK_API)
     return weeks
 
 @app.post("/studyGuide")
-async def createOverview(topics: Topics, DEEPSEEK_API):
+def generateGuide(topics: Topics):
 
-    studyGuides = weekOverview(topics, DEEPSEEK_API)
+    studyGuides = createGuide(topics, DEEPSEEK_API, TAVILY_API)
     return studyGuides
 
 
