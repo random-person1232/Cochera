@@ -22,9 +22,8 @@ def createOverview(syllabus: Syllabus):
 @app.post("/studyGuide")
 def generateGuide(topics: Topics):
 
-    studyGuides = createGuide(topics, DEEPSEEK_API, TAVILY_API)
-    return studyGuides
+    materials = createGuide(topics, DEEPSEEK_API, TAVILY_API)
+    return materials
 
 
-app.mount("/", StaticFiles(directory = ".", html=True), name = "static")
-
+app.mount("/", StaticFiles(directory="frontend", html=True), name="static")

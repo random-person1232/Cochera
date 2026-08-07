@@ -12,7 +12,7 @@ form.addEventListener("submit", async e => {
         length: Number(formData.get("length"))
     }
 
-    const response = await fetch("http://127.0.0.1:8000/syllabus", {
+    const response = await fetch("/syllabus", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
